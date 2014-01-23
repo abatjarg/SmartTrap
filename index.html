@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Smart Trap</title>
+    <link rel="stylesheet" href="js/jquery.mobile-1.3.2.min.css" />
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery.mobile-1.3.2.min.js"></script>   
+
+    <script src="/socket.io/socket.io.js"></script>
+	<script>
+		var socket = io.connect();		
+
+		function ledPin(sel){
+        		if (sel.value == "on") {
+            		socket.emit('ledPin', sel.value);
+        		} else if (sel.value == "off") {
+            		socket.emit('ledPin', sel.value);
+        		}
+			console.log("Pressed: " + sel.value);
+    		}
+	</script>
+
+</head>
+<body>
+	<div>
+		<h1>Smart Trap</h1>
+		<label>
+                Turn LED 
+            </label>
+            <select  data-theme="b" data-role="slider" onchange="ledPin(this);">
+                <option value="off">Off</option>
+                <option value="on">On</option>
+            </select>
+	</div>
+
+</body>
+</html>
+
